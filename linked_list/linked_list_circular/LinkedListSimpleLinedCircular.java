@@ -1,4 +1,4 @@
-package LinkedListCircular;
+
 
 public class LinkedListSimpleLinedCircular {
     Node head;
