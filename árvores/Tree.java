@@ -24,6 +24,23 @@ public class Tree{
         return root;
     }
 
+    public int search(int data){
+        return searchRec(root, data);
+    }
+
+    private int searchRec(Node node, int data){
+        if (node.getData() < data) {
+            Node big = node.getBigger();            
+            return searchRec(big, data);
+        }else if (node.getData() > data ) {
+            Node small = node.getSmaller();            
+            return searchRec(small, data);
+        }else{
+            return node.getData();
+        }
+        
+    }
+
     public void show() {
         showRec(root);
     }
@@ -71,8 +88,7 @@ public class Tree{
         arvore.insert(10);
         arvore.insert(11);
         arvore.insert(9);
-        arvore.removeMax();
-        arvore.removeMin();
+        System.out.print(arvore.search(9));
         arvore.show();
 
     }
