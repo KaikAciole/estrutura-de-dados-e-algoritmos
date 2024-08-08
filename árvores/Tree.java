@@ -24,24 +24,26 @@ public class Tree{
         return root;
     }
 
-    public int search(int data){
-        return searchRec(root, data);
+    public boolean search(int data){
+        if (searchRec(root, data) != data) {
+            return false;
+        }
+        return true;
     }
 
     private int searchRec(Node node, int data){
-        if (node.getData() < data) {
+        if (node.getData() < data && node.getBigger() != null) {
             Node big = node.getBigger();            
             return searchRec(big, data);
-        }else if (node.getData() > data ) {
+        }else if (node.getData() > data && node.getSmaller() != null) {
             Node small = node.getSmaller();            
             return searchRec(small, data);
         }else{
             return node.getData();
         }
-        
     }
 
-    public void show() {
+    public void showOr() {
         showRec(root);
     }
 
@@ -50,6 +52,30 @@ public class Tree{
             showRec(root.getSmaller());
             System.out.print(root.getData() + " ");
             showRec(root.getBigger());
+        }
+    }
+
+    public void showPr() {
+        showRecPr(root);
+    }
+
+    private void showRecPr(Node root) {
+        if (root != null) {
+            System.out.print(root.getData() + " ");
+            showRec(root.getSmaller());
+            showRec(root.getBigger());
+        }
+    }
+
+    public void showPs() {
+        showRecPs(root);
+    }
+
+    private void showRecPs(Node root) {
+        if (root != null) {
+            showRec(root.getSmaller());
+            showRec(root.getBigger());
+            System.out.print(root.getData() + " ");
         }
     }
 
@@ -87,9 +113,16 @@ public class Tree{
         Tree arvore = new Tree();
         arvore.insert(10);
         arvore.insert(11);
-        arvore.insert(9);
-        System.out.print(arvore.search(9));
-        arvore.show();
+        arvore.insert(12);
+        arvore.insert(8);
+        arvore.insert(5);
+        arvore.insert(18);
+        arvore.insert(15);
+        arvore.insert(7);
+        arvore.insert(6);
+        arvore.showPs();
+        
+        
 
     }
 }
