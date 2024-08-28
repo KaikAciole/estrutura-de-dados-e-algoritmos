@@ -1,3 +1,4 @@
+package TreeBinary;
 public class Tree{
 
     Node root;
